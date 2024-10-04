@@ -1,4 +1,6 @@
-pandas
 matplotlib
+numpy
+pandas
 seaborn
 streamlit
+pip
