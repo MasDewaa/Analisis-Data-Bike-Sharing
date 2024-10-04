@@ -9,8 +9,8 @@ For further information, like the background of this dataset, dataset characteri
 ```
 .
 ├── dashboard
-│   ├── dashboard.py
-│   └── day.csv
+│   ├── day.csv
+│   └── logo.png
 ├── data
 │   ├── Readme.txt
 │   ├── day.csv
@@ -21,6 +21,7 @@ For further information, like the background of this dataset, dataset characteri
 |   ├── 3.png
 |   └── 4.png
 ├── README.md
+├── dashboard.py
 ├── notebook.ipynb
 └── requirements.txt
 ```
