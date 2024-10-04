@@ -59,10 +59,10 @@ For further information, like the background of this dataset, dataset characteri
 
 ## 4. Screenshots
 
-![alt text](https://github.com/OrNixz/bike-sharing-rentals/blob/main/screenshots/Screenshot%20(91).png?raw=true)
+![alt text]()
 
-![alt text](https://github.com/OrNixz/bike-sharing-rentals/blob/main/screenshots/Screenshot%20(92).png?raw=true)
+![alt text]()
 
-![alt text](https://github.com/OrNixz/bike-sharing-rentals/blob/main/screenshots/Screenshot%20(93).png?raw=true)
+![alt text]()
 
-![alt text](https://github.com/OrNixz/bike-sharing-rentals/blob/main/screenshots/Screenshot%20(94).png?raw=true)
+![alt text]()
