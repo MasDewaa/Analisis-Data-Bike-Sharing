@@ -111,6 +111,24 @@ def create_weather_rent_df(df):
     })
     return weather_rent_df
 
+# Menghitung RFM
+# Menghitung Recency, Frequency, Monetary
+def calculate_rfm(df):
+    # Mengubah dateday menjadi tipe datetime
+    df['dateday'] = pd.to_datetime(df['dateday'])
+    
+    # Menghitung Recency
+    snapshot_date = df['dateday'].max() + pd.DateOffset(days=1)  # Tanggal snapshot adalah tanggal terakhir + 1
+    rfm_df = df.groupby('registered').agg({
+        'dateday': lambda x: (snapshot_date - x.max()).days,  # Recency
+        'count': 'sum'  # Frequency
+    }).rename(columns={'dateday': 'Recency', 'count': 'Frequency'}).reset_index()
+    
+    # Monetary sama dengan Frequency (misalkan kita anggap sama)
+    rfm_df['Monetary'] = rfm_df['Frequency']
+    
+    return rfm_df
+
 
 # Membuat komponen filter
 min_date = pd.to_datetime(day_df['dateday']).dt.date.min()
@@ -376,5 +394,40 @@ axes[2].tick_params(axis='y', labelsize=10)
 
 plt.tight_layout()
 st.pyplot(fig)
+
+# Menghitung RFM DataFrame
+rfm_result = calculate_rfm(day_df)
+
+# Visualisasi RFM dengan Scatter Plot
+st.subheader('RFM Scatter Plot')
+
+plt.figure(figsize=(10, 6))
+sns.scatterplot(
+    x='Recency',
+    y='Frequency',
+    size='Monetary',
+    sizes=(20, 200),
+    data=rfm_result,
+    alpha=0.5
+)
+
+plt.title('RFM Scatter Plot')
+plt.xlabel('Recency (days)')
+plt.ylabel('Frequency (count)')
+st.pyplot(plt)
+# Segmentasi Pengguna berdasarkan RFM
+st.subheader('RFM Segmentation')
+
+# Menyegmentasikan pengguna
+rfm_result['R'] = pd.qcut(rfm_result['Recency'], 4, labels=[4, 3, 2, 1])  # 1: paling baru
+rfm_result['F'] = pd.qcut(rfm_result['Frequency'], 4, labels=[1, 2, 3, 4])  # 4: paling sering
+rfm_result['M'] = pd.qcut(rfm_result['Monetary'], 4, labels=[1, 2, 3, 4])  # 4: paling banyak
+
+# Menghitung skoring akhir
+rfm_result['RFM_Score'] = rfm_result['R'].astype(str) + rfm_result['F'].astype(str) + rfm_result['M'].astype(str)
+
+# Tampilkan segmentasi RFM
+st.dataframe(rfm_result[['registered', 'Recency', 'Frequency', 'Monetary', 'RFM_Score']])
+
 
 st.caption('Copyright (c) Rama Syailana Dewa 2024')
