@@ -61,10 +61,14 @@ For further information, like the background of this dataset, dataset characteri
 
 ## 4. Screenshots
 
-![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/Screenshoot%20dashboard/1.png)
+![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/screenshoot/1.png)
 
-![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/Screenshoot%20dashboard/2.png)
+![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/screenshoot/2.png)
 
-![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/Screenshoot%20dashboard/3.png)
+![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/screenshoot/3.png)
 
-![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/Screenshoot%20dashboard/4.png)
+![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/screenshoot/4.png)
+
+![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/screenshoot/5.png)
+
+![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/screenshoot/6.png)
