@@ -1,7 +1,7 @@
 
 # Bike Rentals - Final Project Data Analytics
 
-This is a final project from Dicoding in the "Belajar Analisis Data Dengan Python" course to make analysis and create a dashboard from the bike sharing dataset. In the notebook file, I attached the way I did the analysis from Data Wrangling, Exploratory Data Analysis, and Data Visualization. Besides that, I also make the dashboard using streamlit, and you can check it by clicking on the link in the right sidebar or in [here]().
+This is a final project from Dicoding in the "Belajar Analisis Data Dengan Python" course to make analysis and create a dashboard from the bike sharing dataset. In the notebook file, I attached the way I did the analysis from Data Wrangling, Exploratory Data Analysis, and Data Visualization. Besides that, I also make the dashboard using streamlit, and you can check it by clicking on the link in the right sidebar or in [here](notebook.ipynb).
 
 For further information, like the background of this dataset, dataset characteristics, file structures, and more, you can check out the `Readme` file. So in here, I won't explain it any further.
 
@@ -9,8 +9,8 @@ For further information, like the background of this dataset, dataset characteri
 ```
 .
 ├── dashboard
-│   ├── dashboard.py
-│   └── day.csv
+│   ├── day.csv
+│   └── logo.png
 ├── data
 │   ├── Readme.txt
 │   ├── day.csv
@@ -21,6 +21,7 @@ For further information, like the background of this dataset, dataset characteri
 |   ├── 3.png
 |   └── 4.png
 ├── README.md
+├── dashboard.py
 ├── notebook.ipynb
 └── requirements.txt
 ```
@@ -45,7 +46,7 @@ For further information, like the background of this dataset, dataset characteri
 ## 3. Getting Started
 ### `notebook.ipynb`
 1. Download this project.
-2. Open your favorite IDE like Jupyter Notebook or Google Colaboratory (but in here I will use Google Colab).
+2. Open your favorite IDE like Jupyter Notebook or Google Colaboratory (but in here I will use Google Collabs).
 3. Create a New Notebook.
 4. Upload and select the file with .ipynb extension.
 5. Connect to hosted runtime.
@@ -59,10 +60,10 @@ For further information, like the background of this dataset, dataset characteri
 
 ## 4. Screenshots
 
-![alt text]()
+![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/Screenshoot%20dashboard/1.png)
 
-![alt text]()
+![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/Screenshoot%20dashboard/2.png)
 
-![alt text]()
+![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/Screenshoot%20dashboard/3.png)
 
-![alt text]()
+![alt text](https://github.com/MasDewaa/Analisis-Data-Bike-Sharing/blob/main/Screenshoot%20dashboard/4.png)
