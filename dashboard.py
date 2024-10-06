@@ -146,6 +146,7 @@ weather_rent_df = create_weather_rent_df(main_df)
 # Membuat judul
 st.header('Bike Rental Dashboard 🚲')
 
+
 # Membuat jumlah penyewaan harian
 st.subheader('Daily Rentals')
 col1, col2, col3 = st.columns(3)
@@ -164,21 +165,122 @@ with col3:
 
 # Membuat jumlah penyewaan bulanan
 st.subheader('Monthly Rentals')
+
+# Menambahkan kolom kategori untuk bulan dengan urutan
+day_df['month'] = pd.Categorical(day_df['month'], categories=[
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], 
+    ordered=True)
+
+# Menghitung jumlah penyewaan per bulan dan tahun
+monthly_counts = day_df.groupby(by=["month", "year"]).agg({
+    "count": "sum"
+}).reset_index()
+
+# Membuat plot dengan seaborn
 fig, ax = plt.subplots(figsize=(24, 8))
-ax.plot(
-    monthly_rent_df.index,
-    monthly_rent_df['count'],
-    marker='o', 
-    linewidth=2,
-    color='tab:blue'
+sns.lineplot(
+    data=monthly_counts,
+    x="month",
+    y="count",
+    hue="year",
+    palette="rocket",
+    marker="o",
+    ax=ax
 )
 
-for index, row in enumerate(monthly_rent_df['count']):
-    ax.text(index, row + 1, str(row), ha='center', va='bottom', fontsize=12)
+# Menambahkan angka di setiap titik
+for _, row in monthly_counts.iterrows():
+    ax.text(row['month'], row['count'], str(row['count']), 
+            ha='center', va='bottom', fontsize=10)
 
-ax.tick_params(axis='x', labelsize=25, rotation=45)
-ax.tick_params(axis='y', labelsize=20)
+# Menambahkan judul dan mengatur label
+ax.set_title("Jumlah total sepeda yang disewakan berdasarkan Bulan dan Tahun")
+ax.set_xlabel(None)
+ax.set_ylabel(None)
+ax.legend(title="Tahun", loc="upper right")
+
+# Menampilkan plot di Streamlit
 st.pyplot(fig)
+
+# Membuah jumlah rata-rata penyewaan berdasarkan kondisi cuaca
+st.subheader('Average Weatherly Rentals')
+
+# Menghitung rata-rata penyewaan berdasarkan kondisi cuaca
+average_weather_rent_df = day_df.groupby('weather_cond').agg({
+    'count': 'mean'  # Menghitung rata-rata
+}).reset_index()
+
+# Membuat bar plot
+fig, ax = plt.subplots(figsize=(16, 8))
+
+# Warna untuk setiap kondisi cuaca
+colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
+
+# Membuat barplot
+sns.barplot(
+    x='weather_cond',
+    y='count',
+    data=average_weather_rent_df,
+    palette=colors,
+    ax=ax
+)
+
+# Menambahkan angka di atas setiap batang
+for index, row in enumerate(average_weather_rent_df['count']):
+    ax.text(index, row + 0.1, f"{row:.2f}", ha='center', va='bottom', fontsize=12)
+
+# Mengatur label dan judul
+ax.set_xlabel('Kondisi Cuaca', fontsize=20)
+ax.set_ylabel('Rata-rata Jumlah Pengguna Sepeda', fontsize=20)
+ax.tick_params(axis='x', labelsize=15)
+ax.tick_params(axis='y', labelsize=15)
+plt.title('Jumlah Rata-rata Pengguna Sepeda berdasarkan Kondisi Cuaca', fontsize=24)
+
+# Menampilkan plot di Streamlit
+st.pyplot(fig)
+
+# Membuat Scatter Plots
+st.subheader('Scatter Plots of Temperature and Humidity vs Count')
+
+# Set up the figure for the scatter plots
+plt.figure(figsize=(14, 6))
+
+# Scatter plot untuk 'temp' vs 'count'
+plt.subplot(1, 3, 1)
+sns.scatterplot(
+    x='temp',
+    y='count',
+    data=day_df,
+    alpha=0.5
+)
+plt.title('Temperature vs Count')
+
+# Scatter plot untuk 'atemp' vs 'count'
+plt.subplot(1, 3, 2)
+sns.scatterplot(
+    x='atemp',
+    y='count',
+    data=day_df,
+    alpha=0.5
+)
+plt.title('Feels Like Temperature vs Count')
+
+# Scatter plot untuk 'hum' vs 'count'
+plt.subplot(1, 3, 3)
+sns.scatterplot(
+    x='hum',
+    y='count',
+    data=day_df,
+    alpha=0.5
+)
+plt.title('Humidity vs Count')
+
+# Menampilkan plot di Streamlit
+st.pyplot(plt)
+
+# Reset the current figure to avoid overlaps in subsequent plots
+plt.clf()  # Clear the figure
 
 # Membuat jumlah penyewaan berdasarkan season
 st.subheader('Seasonly Rentals')
@@ -214,28 +316,6 @@ ax.tick_params(axis='y', labelsize=15)
 ax.legend()
 st.pyplot(fig)
 
-# Membuah jumlah penyewaan berdasarkan kondisi cuaca
-st.subheader('Weatherly Rentals')
-
-fig, ax = plt.subplots(figsize=(16, 8))
-
-colors=["tab:blue", "tab:orange", "tab:green"]
-
-sns.barplot(
-    x=weather_rent_df.index,
-    y=weather_rent_df['count'],
-    palette=colors,
-    ax=ax
-)
-
-for index, row in enumerate(weather_rent_df['count']):
-    ax.text(index, row + 1, str(row), ha='center', va='bottom', fontsize=12)
-
-ax.set_xlabel(None)
-ax.set_ylabel(None)
-ax.tick_params(axis='x', labelsize=20)
-ax.tick_params(axis='y', labelsize=15)
-st.pyplot(fig)
 
 # Membuat jumlah penyewaan berdasarkan weekday, working dan holiday
 st.subheader('Weekday, Workingday, and Holiday Rentals')
