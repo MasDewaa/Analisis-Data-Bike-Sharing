@@ -164,7 +164,7 @@ with col3:
     st.metric('Total User', value= daily_rent_total)
 
 # Membuat jumlah penyewaan bulanan
-st.subheader('Monthly Rentals')
+st.subheader('Monthly & Year Rentals')
 
 # Menambahkan kolom kategori untuk bulan dengan urutan
 day_df['month'] = pd.Categorical(day_df['month'], categories=[
